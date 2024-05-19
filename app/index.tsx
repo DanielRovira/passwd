@@ -1,25 +1,29 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import * as Clipboard from 'expo-clipboard';
 import Slider from "@react-native-community/slider";
-import Modal from "../src/components/Modal"
 
 let charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$"
 
 export default function Index() {
-const [size, setSize] = useState<any>(10)
-const [passwordValue, setPasswordValue] = useState<any>("")
-const [modalVisible, setModalVisible] = useState(false)
+const [size, setSize] = useState<any>(12)
+const [passwordValue, setPasswordValue] = useState<any>(" ")
 
+const copyToClipboard = async (value:string) => {
+    await Clipboard.setStringAsync(value);
+  };
 
 function generatePassword() {
-  let password = ""
+  let password: string = ""
   for(let i = 0, n = charset.length; i < size; i++){
     password += charset.charAt(Math.floor(Math.random() * n))
   }
 
   setPasswordValue(password)
-  setModalVisible(true)
+  copyToClipboard(password)
 }
+
+
 
   return (
     <View style={styles.container}>
@@ -27,6 +31,8 @@ function generatePassword() {
         source={require("../assets/images/react-logo.png")}
         style={styles.logo}
       />
+
+      <Text selectable style={[styles.title, styles.password]}>{passwordValue}</Text>
 
       <Text style={styles.title} >{size} caracteres</Text>
 
@@ -48,7 +54,7 @@ function generatePassword() {
         <Text style={styles.buttonText}>Gerar senha</Text>
       </Pressable>
 
-      <Modal />
+
 
     </View>
   );
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F3F3FF",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   logo:{
     marginBottom: 60
@@ -87,6 +93,9 @@ const styles = StyleSheet.create({
   },
   buttonText:{
     color: "#FFF",
-    fontSize: 20,
+    fontSize: 20
+  },
+  password:{
+    margin: 20
   }
 })
