@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import * as Clipboard from 'expo-clipboard';
 import Slider from "@react-native-community/slider";
+import Modal from "../src/components/Modal";
 
 let charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$"
 
 export default function Index() {
 const [size, setSize] = useState<any>(12)
 const [passwordValue, setPasswordValue] = useState<any>(" ")
+// const [showPopup, setShowPopup] = useState<any>()
 
 const copyToClipboard = async (value:string) => {
     await Clipboard.setStringAsync(value);
@@ -21,12 +23,18 @@ function generatePassword() {
 
   setPasswordValue(password)
   copyToClipboard(password)
+//   setShowPopup("auto")
+//   setTimeout(() => {
+//     setShowPopup("none");
+//   }, 6000);
 }
-
-
 
   return (
     <View style={styles.container}>
+        <View style={styles.popup} >
+            <Text style={styles.popupText}>Copiado!</Text>
+        </View>
+
       <Image 
         source={require("../assets/images/react-logo.png")}
         style={styles.logo}
@@ -54,8 +62,6 @@ function generatePassword() {
         <Text style={styles.buttonText}>Gerar senha</Text>
       </Pressable>
 
-
-
     </View>
   );
 }
@@ -79,8 +85,8 @@ const styles = StyleSheet.create({
     padding: 6
   },
   title:{
-    fontSize: 30,
-    fontWeight: "bold"
+    fontSize: 25,
+    fontWeight: "500"
   },
   button:{
     backgroundColor: "#392de9",
@@ -96,6 +102,19 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   password:{
-    margin: 20
-  }
+    fontSize: 30,
+    marginVertical: 50,
+    fontWeight: "bold"
+  },
+  popup:{
+    position: 'absolute',
+    top: 50,
+    backgroundColor: "rgba(25,25,25,0.5)",
+    borderRadius: 5,
+    padding: 10
+  },
+  popupText:{
+  color:'#FFF',
+  fontSize: 18
+}
 })
