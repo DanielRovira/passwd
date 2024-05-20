@@ -50,8 +50,8 @@ function generatePassword() {
           minimumValue={6}
           maximumValue={20}
           // maximumTrackTintColor="#ff0000"
-          // minimumTrackTintColor="#000"
-          // thumbTintColor="#392de9"
+          minimumTrackTintColor="#392de9"
+          thumbTintColor="#392de9"
           step={1}
           value={size}
           onValueChange={ (value) => setSize(value) }
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F3F3FF",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    gap: 20
   },
   logo:{
     marginBottom: 60
