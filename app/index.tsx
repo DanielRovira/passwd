@@ -9,7 +9,7 @@ let charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@
 export default function Index() {
 const [size, setSize] = useState<any>(12)
 const [passwordValue, setPasswordValue] = useState<any>(" ")
-// const [showPopup, setShowPopup] = useState<any>()
+const [showPopup, setShowPopup] = useState(false)
 
 const copyToClipboard = async (value:string) => {
     await Clipboard.setStringAsync(value);
@@ -23,15 +23,15 @@ function generatePassword() {
 
   setPasswordValue(password)
   copyToClipboard(password)
-//   setShowPopup("auto")
-//   setTimeout(() => {
-//     setShowPopup("none");
-//   }, 6000);
+  setShowPopup(true)
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
 }
 
   return (
     <View style={styles.container}>
-        <View style={styles.popup} >
+        <View style={[styles.popup, {display: showPopup ? "flex" : "none" }]} >
             <Text style={styles.popupText}>Copiado!</Text>
         </View>
 
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   popup:{
     position: 'absolute',
-    top: 50,
+    top: 80,
     backgroundColor: "rgba(25,25,25,0.5)",
     borderRadius: 5,
     padding: 10
