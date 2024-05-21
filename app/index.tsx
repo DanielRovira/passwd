@@ -83,7 +83,9 @@ const styles = StyleSheet.create({
     width: "80%",
     backgroundColor: "#FFF",
     borderRadius: 8,
-    padding: 6
+    padding: 6,
+    minWidth: 300,
+    maxWidth: 500
   },
   title:{
     fontSize: 25,
@@ -96,7 +98,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
-    marginBottom: 18
+    marginBottom: 18,
+    maxWidth: 500
   },
   buttonText:{
     color: "#FFF",
