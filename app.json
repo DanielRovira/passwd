@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.danielrovira.passwd"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,14 @@
     "experiments": {
       "typedRoutes": true,
       "baseUrl": "/passwd"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "497c74e7-b5d3-4839-a0e9-340c07cc7483"
+      }
     }
   }
 }
